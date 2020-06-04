@@ -29,21 +29,21 @@ const byte cols_max = 8; // sets the number of columns in the matrix
 // A zero indicates no normal key at that location.
 //
 int normal[rows_max][cols_max] = {
-  {'arrow-r','0','arrow-l','0','0','0','delete','0'},
-  {'arrow-d','\','arrow-u','0','bckspace','enter','0','space'},
-  {'0','-','p','[',''',';','=','/'},
-  {'9','f9','o','f10','f11','l','f12','period'},
-  {'8','0','i',']','num-lk','k','0','comma'},
-  {'7','6','u','y','h','j','n','m'},
-  {'4','5','r','t','g','f','b','v'},
-  {'3','f2','e','f3','f4','d','f1','c'},
-  {'alt-l','0','0','0','0','0','alt-r','0'},
-  {'2','f5','w','f6','f7','s','f8','x'},
-  {'0','0','0','0','gui','0','0','0'},
-  {'0','0','0','cntrl-l','0','cntrl-r','0','0'},
-  {'0','0','shift-r','0','0','0','0','shift-l'},
-  {'1','`','q','tab','esc','a','caps-lck','z'},
-  {'0','fn','0','0','0','0','0','0'}
+  {KEY_RIGHT,0,KEY_LEFT,0,0,0,KEY_DELETE,0},
+  {KEY_DOWN,KEY_BACKSLASH,KEY_UP,0,KEY_BACKSPACE,KEY_ENTER,0,KEY_SPACE},
+  {KEY_0,KEY_MINUS,KEY_P,KEY_LEFT_BRACE,KEY_QUOTE,KEY_SEMICOLON,KEY_EQUAL,KEY_SLASH},
+  {KEY_9,KEY_F9,KEY_O,KEY_F10,KEY_F11,KEY_L,KEY_F12,KEY_PERIOD},
+  {KEY_8,0,KEY_I,KEY_RIGHT_BRACE,KEY_NUM_LOCK,KEY_K,0,KEY_COMMA},
+  {KEY_7,KEY_6,KEY_U,KEY_Y,KEY_H,KEY_J,KEY_N,KEY_M},
+  {KEY_4,KEY_5,KEY_R,KEY_T,KEY_G,KEY_F,KEY_B,KEY_V},
+  {KEY_3,KEY_F2,KEY_E,KEY_F3,KEY_F4,KEY_D,KEY_F1,KEY_C},
+  {0,0,0,0,0,0,0,0},
+  {KEY_2,KEY_F5,KEY_W,KEY_F6,KEY_F7,KEY_S,KEY_F8,KEY_X},
+  {0,0,0,0,0,0,0,0},
+  {0,0,0,0,0,0,0,0},
+  {0,0,0,0,0,0,0,0},
+  {KEY_1,KEY_TILDE,KEY_Q,KEY_TAB,KEY_ESC,KEY_A,KEY_CAPS_LOCK,KEY_Z},
+  {0,0,0,0,0,0,0,0}
 };
 // Load the modifier key matrix with key names at the correct row-column location. 
 // A zero indicates no modifier key at that location.
@@ -56,13 +56,13 @@ int modifier[rows_max][cols_max] = {
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
+  {MODIFIERKEY_LEFT_ALT,0,0,0,0,0,MODIFIERKEY_RIGHT_ALT,0},
   {0,0,0,0,0,0,0,0},
+  {0,0,0,0,MODIFIERKEY_GUI,0,0,0},
+  {0,0,0,MODIFIERKEY_LEFT_CTRL,0,MODIFIERKEY_RIGHT_CTRL,0,0},
+  {0,0,MODIFIERKEY_RIGHT_SHIFT,0,0,0,0,MODIFIERKEY_LEFT_SHIFT},
   {0,0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0,0}
+  {0,MODIFIERKEY_FN,0,0,0,0,0,0}
 };
 // Load the media key matrix with Fn key names at the correct row-column location. 
 // A zero indicates no media key at that location.
@@ -70,13 +70,13 @@ int media[rows_max][cols_max] = {
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
+  {0,KEY_MEDIA_VOLUME_DEC,0,KEY_MEDIA_VOLUME_INC,KEY_MEDIA_MUTE,0,0,0},
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0,0},
+  {0,KEY_MEDIA_PREV_TRACK,0,KEY_MEDIA_STOP,KEY_MEDIA_PLAY_PAUSE,0,KEY_MEDIA_NEXT_TRACK,0},
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
