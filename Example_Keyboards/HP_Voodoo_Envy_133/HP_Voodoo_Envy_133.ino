@@ -9,8 +9,8 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-// This software implements an HP Compaq Presario 2100 Laptop Keyboard Controller using a Teensy LC on 
-// a daughterboard with a 25 pin FPC connector. The keyboard part number is AEKT1TPU011.
+// This software implements a Sony Vaio VPCEA Laptop Keyboard Controller using a Teensy 3.2 on 
+// a daughterboard with a 32 pin FPC connector. The keyboard part number is A-1765-621.
 // This routine uses the Teensyduino "Micro-Manager Method" to send Normal and Modifier 
 // keys over USB. Multi-media keys are are sent with keyboard press and release functions.
 // Description of Teensyduino keyboard functions is at www.pjrc.com/teensy/td_keyboard.html
@@ -22,53 +22,49 @@
 #define MODIFIERKEY_FN 0x8f   // give Fn key a HID code 
 #define CAPS_LED 13 // Teensy LED shows Caps-Lock
 //
-const byte rows_max = 17; // sets the number of rows in the matrix
+const byte rows_max = 15; // sets the number of rows in the matrix
 const byte cols_max = 8; // sets the number of columns in the matrix
-// 
+//
 // Load the normal key matrix with the Teensyduino key names described at www.pjrc.com/teensy/td_keyboard.html
 // A zero indicates no normal key at that location.
 //
 int normal[rows_max][cols_max] = {
-  {0,0,0,0,0,0,0,0},
-  {KEY_A,KEY_Z,KEY_ESC,KEY_1,0,KEY_TAB,KEY_Q,KEY_TILDE},
-  {KEY_S,KEY_X,0,KEY_2,0,KEY_CAPS_LOCK,KEY_W,KEY_F1},
-  {0,0,0,KEY_PRINTSCREEN,0,0,0,0},
-  {0,0,0,0,0,0,0,0},
-  {KEY_D,KEY_C,KEY_F4,KEY_3,0,KEY_F3,KEY_E,KEY_F2},
-  {0,0,0,0,0,0,0,0},
-  {KEY_F,KEY_V,KEY_G,KEY_4,KEY_B,KEY_T,KEY_R,KEY_5},
-  {KEY_BACKSLASH,KEY_ENTER,KEY_F5,KEY_F10,KEY_SPACE,KEY_BACKSPACE,0,KEY_F9},
-  {KEY_J,KEY_M,KEY_H,KEY_7,KEY_N,KEY_Y,KEY_U,KEY_6},
-  {KEY_K,KEY_COMMA,KEY_F6,KEY_8,0,KEY_RIGHT_BRACE,KEY_I,KEY_EQUAL},
-  {KEY_L,KEY_PERIOD,0,KEY_9,0,KEY_F7,KEY_O,KEY_F8},
-  {KEY_SEMICOLON,KEY_QUOTE,0,KEY_0,KEY_SLASH,KEY_LEFT_BRACE,KEY_P,KEY_MINUS},
-  {0,0,0,KEY_F12,KEY_RIGHT,0,0,KEY_INSERT},
-  {KEY_PAGE_DOWN,KEY_PAUSE,KEY_UP,KEY_END,KEY_LEFT,KEY_MENU,KEY_PAGE_UP,KEY_HOME},
-  {0,KEY_NUM_LOCK,0,KEY_F11,KEY_DOWN,0,0,KEY_DELETE},
-  {0,0,0,0,0,0,0,0}
+  {arrow-r,0,arrow-l,0,0,0,delete,0},
+  {arrow-d,\,arrow-u,0,bckspace,enter,0,space},
+  {0,-,p,[,,;,=,/},
+  {9,f9,o,f10,f11,l,f12,period},
+  {8,0,i,],num-lk,k,0,comma},
+  {7,6,u,y,h,j,n,m},
+  {4,5,r,t,g,f,b,v},
+  {3,f2,e,f3,f4,d,f1,c},
+  {alt-l,0,0,0,0,0,alt-r,0},
+  {2,f5,w,f6,f7,s,f8,x},
+  {0,0,0,0,gui,0,0,0},
+  {0,0,0,cntrl-l,0,cntrl-r,0,0},
+  {0,0,shift-r,0,0,0,0,shift-l},
+  {1,`,q,tab,esc,a,caps-lck,z},
+  {0,fn,0,0,0,0,0,0}
 };
-// Load the modifier key matrix with Fn key names at the correct row-column location. 
+// Load the modifier key matrix with key names at the correct row-column location. 
 // A zero indicates no modifier key at that location.
 int modifier[rows_max][cols_max] = {
-  {0,MODIFIERKEY_RIGHT_CTRL,0,0,0,0,0,MODIFIERKEY_LEFT_CTRL},
-  {0,0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0,0},
-  {0,0,MODIFIERKEY_LEFT_ALT,0,MODIFIERKEY_RIGHT_ALT,0,0,0},
-  {0,0,0,0,0,0,MODIFIERKEY_GUI,0},
-  {0,0,0,0,0,0,0,0},
-  {0,MODIFIERKEY_RIGHT_SHIFT,0,0,0,MODIFIERKEY_LEFT_SHIFT,0,0},
-  {0,0,0,0,0,0,0,0}, 
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0,0},    
   {0,0,0,0,0,0,0,0},
-  {MODIFIERKEY_FN,0,0,0,0,0,0,0},
+  {0,0,0,0,0,0,0,0},
+  {0,0,0,0,0,0,0,0},
+  {0,0,0,0,0,0,0,0},
+  {0,0,0,0,0,0,0,0},
+  {0,0,0,0,0,0,0,0},
+  {0,0,0,0,0,0,0,0},
+  {0,0,0,0,0,0,0,0},
+  {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0}
 };
-// Load the media key matrix with key names at the correct row-column location. 
+// Load the media key matrix with Fn key names at the correct row-column location. 
 // A zero indicates no media key at that location.
 int media[rows_max][cols_max] = {
   {0,0,0,0,0,0,0,0},
@@ -78,14 +74,12 @@ int media[rows_max][cols_max] = {
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0,0},   
-  {0,0,0,0,0,KEY_MEDIA_MUTE,0,0},
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0,0},   
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
-  {KEY_MEDIA_VOLUME_DEC,0,0,0,0,0,KEY_MEDIA_VOLUME_INC,0},
+  {0,0,0,0,0,0,0,0},
+  {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0}
 };
@@ -106,19 +100,17 @@ boolean old_key[rows_max][cols_max] = {
   {1,1,1,1,1,1,1,1},
   {1,1,1,1,1,1,1,1},
   {1,1,1,1,1,1,1,1},
-  {1,1,1,1,1,1,1,1},
-  {1,1,1,1,1,1,1,1},
   {1,1,1,1,1,1,1,1}
 };
 //
-// Define the Teensy LC I/O numbers (translated from the FPC pin #)
-// Row FPC pin # 01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17
-// Teensy I/O  # 23,00,22,01,24,02,21,03,25,04,20,05,19,06,18,07,17
-int Row_IO[rows_max] = {23,0,22,1,24,2,21,3,25,4,20,5,19,6,18,7,17}; // Teensy LC I/O numbers for rows
+// Define the Teensy 3.2 I/O numbers (translated from the FPC pin #)
+// Row FPC pin # 02,03,04,05,06,08,11,13,14,15,16,17,18,20,21,22
+// Teensy I/O  # 00,22,01,21,02,03,18,17,06,24,07,25,08,09,26,10
+int Row_IO[rows_max] = {21,2,20,3,4,18,5,17,6,24,7,25,8,33,9}; // Teensy 3.2 I/O numbers for rows
 //
-// Column FPC pin # 18,19,20,21,22,23,24,25
-// Teensy I/O     # 08,16,09,15,10,14,11,26
-int Col_IO[cols_max] = {8,16,9,15,10,14,11,26};                       // Teensy LC I/O numbers for columns
+// Column FPC pin # 07,09,10,12,19,23,24,25
+// Teensy I/O     # 20,19,04,05,33,27,11,28
+int Col_IO[cols_max] = {26,10,27,11,28,12,32,31};  // Teensy 3.2 I/O numbers for columns
 
 // Declare variables that will be used by functions
 boolean slots_full = LOW; // Goes high when slots 1 thru 6 contain normal keys
@@ -301,7 +293,7 @@ void setup() {
 }
 //
 boolean Fn_pressed = HIGH; // Initialize Fn key to HIGH = "not pressed"
-extern volatile uint8_t keyboard_leds; // 8 bits sent from Pi to Teensy that give keyboard LED status. Caps lock is bit D1.
+extern volatile uint8_t keyboard_leds; // 8 bits sent from Host to Teensy that give keyboard LED status. Caps lock is bit D1.
 //
 //---------------------------------Main Loop---------------------------------------------
 //
@@ -365,7 +357,7 @@ void loop() {
           }
         }
       } 
-// **************end of normal and media key section
+// **************end of normal and media key section 
 //
     }
     go_z(Row_IO[x]); // De-activate Row (send it to hi-z)
