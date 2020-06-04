@@ -59,11 +59,17 @@ f9				8	22
 f10				24	8	
 f11				8	25	
 f12				8	27	
+insert			
 delete			5	27	
+home			
+pg-up			
+pg-dn			
+end				
 arrow-r			5	21	
 arrow-l			5	23	
 arrow-u			6	23	
 arrow-d			6	21	
+menu			
 /				7	28	
 period			8	28	
 comma			10	28	
@@ -76,4 +82,5 @@ enter			6	26
 caps-lck		19	27	
 tab				19	24	
 space			6	28	
+prt-sc			
 num-lk			10	25	
