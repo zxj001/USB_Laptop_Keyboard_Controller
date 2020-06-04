@@ -40,7 +40,7 @@
 // and pin 34 are both grounds. They will be reported as tied together but they are not needed by the key matrix. In this case, set the 
 // min_pin to 2 and the max_pin to 33.
 //  
-int max_pin = 33; // the keyboard FPC connector pin count. If set to 34, unsolder the LED or the code won't work
+int max_pin = 32; // the keyboard FPC connector pin count. If set to 34, unsolder the LED or the code won't work
 int min_pin = 1; // the first pin to be tested on the FPC connector (usually pin 1)
 //
 // load the key codes used in sending usb numbers, tab, and down arrow
