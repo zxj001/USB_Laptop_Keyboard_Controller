@@ -9,15 +9,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-// This software implements a Sony Vaio VPCEA Laptop Keyboard Controller using a Teensy 3.2 on 
-// a daughterboard with a 32 pin FPC connector. The keyboard part number is A-1765-621.
-// This routine uses the Teensyduino "Micro-Manager Method" to send Normal and Modifier 
-// keys over USB. Multi-media keys are are sent with keyboard press and release functions.
-// Description of Teensyduino keyboard functions is at www.pjrc.com/teensy/td_keyboard.html
+// This software implements a HP Voodoo Envy 133 Laptop Keyboard Controller using a Teensy 3.2 on 
+// a daughterboard with a 32 pin FPC connector.
 // 
 // Revision History
-// Initial Release Nov 15, 2018
-// Rev 1 July 16, 2019 - check if slots are full when detecting a key press
+// Initial Release June 3, 2020
 //
 #define MODIFIERKEY_FN 0x8f   // give Fn key a HID code 
 #define CAPS_LED 13 // Teensy LED shows Caps-Lock
