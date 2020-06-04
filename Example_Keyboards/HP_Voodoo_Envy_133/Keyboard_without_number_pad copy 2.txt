@@ -4,7 +4,7 @@ shift-l			18	28
 shift-r			18	23	
 alt-l			21	14	
 alt-r			14	27	
-gui				
+gui				16	25	
 fn				20	22	
 a				19	26	
 b				12	27	
