@@ -29,21 +29,21 @@ const byte cols_max = 8; // sets the number of columns in the matrix
 // A zero indicates no normal key at that location.
 //
 int normal[rows_max][cols_max] = {
-  {arrow-r,0,arrow-l,0,0,0,delete,0},
-  {arrow-d,\,arrow-u,0,bckspace,enter,0,space},
-  {0,-,p,[,,;,=,/},
-  {9,f9,o,f10,f11,l,f12,period},
-  {8,0,i,],num-lk,k,0,comma},
-  {7,6,u,y,h,j,n,m},
-  {4,5,r,t,g,f,b,v},
-  {3,f2,e,f3,f4,d,f1,c},
-  {alt-l,0,0,0,0,0,alt-r,0},
-  {2,f5,w,f6,f7,s,f8,x},
-  {0,0,0,0,gui,0,0,0},
-  {0,0,0,cntrl-l,0,cntrl-r,0,0},
-  {0,0,shift-r,0,0,0,0,shift-l},
-  {1,`,q,tab,esc,a,caps-lck,z},
-  {0,fn,0,0,0,0,0,0}
+  {'arrow-r','0','arrow-l','0','0','0','delete','0'},
+  {'arrow-d','\','arrow-u','0','bckspace','enter','0','space'},
+  {'0','-','p','[',''',';','=','/'},
+  {'9','f9','o','f10','f11','l','f12','period'},
+  {'8','0','i',']','num-lk','k','0','comma'},
+  {'7','6','u','y','h','j','n','m'},
+  {'4','5','r','t','g','f','b','v'},
+  {'3','f2','e','f3','f4','d','f1','c'},
+  {'alt-l','0','0','0','0','0','alt-r','0'},
+  {'2','f5','w','f6','f7','s','f8','x'},
+  {'0','0','0','0','gui','0','0','0'},
+  {'0','0','0','cntrl-l','0','cntrl-r','0','0'},
+  {'0','0','shift-r','0','0','0','0','shift-l'},
+  {'1','`','q','tab','esc','a','caps-lck','z'},
+  {'0','fn','0','0','0','0','0','0'}
 };
 // Load the modifier key matrix with key names at the correct row-column location. 
 // A zero indicates no modifier key at that location.
